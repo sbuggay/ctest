@@ -2,11 +2,11 @@
 #include <string.h>
 #include "ctest.h"
 
-int main() {
-    assert("this test should pass #1", 1 < 2);
-    assert("this test should pass #2", 1 < 3);
-    assert("this test should pass #3", strlen("word") == 4);
-    assert("this test should fail", strlen("word") == 5);
-    report();
-    return 0;
+
+void simple_test_case() {
+    expect("this test should pass #1", 1 < 2);
+    expect("this test should pass #2", 1 < 3);
+    expect("this test should pass #3", strlen("word") == 4);
+    expect("this test should fail", strlen("word") == 5);
 }
+
