@@ -1,4 +1,17 @@
 
+typedef struct function_s {
+    void (*function)();
+} function_t;
+
+#define register(func_cb)                        \
+    static function_t ptr_##func_cb              \
+    __attribute((used, section("suites"))) = {   \
+        .function = func_cb,                     \
+    }
+
+#define foreach_entry(section_name, type_t, elem) \
+    for (type_t *elem = ({ extern type_t __start_##section_name; &__start_##section_name; }); elem != ({ extern type_t __stop_##section_name; &__stop_##section_name; }); ++elem)
+
 struct node {
     void (*function)();
     struct node *next;

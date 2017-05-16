@@ -27,10 +27,13 @@ void __register_func(void (*function)()) {
 }
 
 void __run() {
-    struct node *iter = __head;
-    while (iter != NULL) {
-        (*iter->function)();
-        iter = iter->next;
+    // struct node *iter = __head;
+    // while (iter != NULL) {
+    //     (*iter->function)();
+    //     iter = iter->next;
+    // }
+    foreach_entry(suites, function_t, entry) {
+        entry->function();
     }
 }
 
