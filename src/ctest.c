@@ -6,12 +6,12 @@ void __init(char *date, char *time) {
     printf("%s %s\n", date, time);
 }
 
-void __expect_func(char *message, int expression, char *expression_s, char *file, int line) {
+void __expect(char *message, int expression, char *expression_s, char *file, int line) {
     printf("[%s] %s (%s) %s:%d\n", expression ? "PASS": "FAIL", message, expression_s, file, line);
     expression ? __passed++ : __failed++;
 }
 
-void __register_func(void (*function)()) {
+void __register(void (*function)()) {
     printf("registering function\n");
     if (__head == NULL) {
         __head = malloc(sizeof(struct node));
